@@ -1,63 +1,67 @@
 <template>
-	<scroll-view scroll-x="true" class="scroll-x-list" id="first">
-		<view v-for="(item,index) in albumList" class="view-parent"
-			:style="{'--right': index==albumList.length-1 ? '0rpx' : '32rpx'}" @click="changeAlbumSelect(index)">
-			<text class="view-item"
-				:style="{'--bgColor': albumIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': albumIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
-		</view>
-	</scroll-view>
-	<scroll-view scroll-x="true" class="scroll-x-list" id="first">
-		<view v-for="(item,index) in typeList" class="view-parent"
-			:style="{'--right': index==typeList.length-1 ? '0rpx' : '32rpx'}" @click="changeTypeSelect(index)">
-			<text class="view-item"
-				:style="{'--bgColor': typeIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': typeIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
-		</view>
-	</scroll-view>
-	<scroll-view scroll-x="true" class="scroll-x-list" id="first">
-		<view v-for="(item,index) in platformList" class="view-parent"
-			:style="{'--right': index==platformList.length-1 ? '0rpx' : '32rpx'}" @click="changePlatformSelect(index)">
-			<text class="view-item"
-				:style="{'--bgColor': platformIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': platformIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
-		</view>
-	</scroll-view>
-	<scroll-view scroll-x="true" class="scroll-x-list" id="first">
-		<view v-for="(item,index) in languageList" class="view-parent"
-			:style="{'--right': index==languageList.length-1 ? '0rpx' : '32rpx'}" @click="changeLanguageSelect(index)">
-			<text class="view-item"
-				:style="{'--bgColor': languageIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': languageIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
-		</view>
-	</scroll-view>
-	<scroll-view v-if="isInfo == -1" scroll-y="true" class="display">
-		<view v-for="(item,index) in displayList" class="display-item">
-			<view class="display-item-name" @click="joinPlayThis(index)">
-				<text> {{ item.name }} </text>
+	<view class="scroll-x">
+		<scroll-view scroll-x="true" class="scroll-x-list" id="first">
+			<view v-for="(item,index) in albumList" class="view-parent"
+				:style="{'--right': index==albumList.length-1 ? '0rpx' : '32rpx'}" @click="changeAlbumSelect(index)">
+				<text class="view-item"
+					:style="{'--bgColor': albumIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': albumIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
 			</view>
-			<image src="../../static/more.png" class="display-item-more" @click="moreInfo(index)" />
-			<view class="display-item-info">
-				<text class="display-item-album"> {{ item.album }} </text>
-				<text class="display-item-type"> {{ item.music_type }}</text>
-				<text class="display-item-time">{{ item.publish_time.slice(0, 10) }}</text>
+		</scroll-view>
+		<scroll-view scroll-x="true" class="scroll-x-list" id="first">
+			<view v-for="(item,index) in typeList" class="view-parent"
+				:style="{'--right': index==typeList.length-1 ? '0rpx' : '32rpx'}" @click="changeTypeSelect(index)">
+				<text class="view-item"
+					:style="{'--bgColor': typeIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': typeIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
 			</view>
-		</view>
-	</scroll-view>
-<!-- 	<view class="popup-box" @click="closePopup()" v-if="isInfo != -1"></view>
+		</scroll-view>
+		<scroll-view scroll-x="true" class="scroll-x-list" id="first">
+			<view v-for="(item,index) in platformList" class="view-parent"
+				:style="{'--right': index==platformList.length-1 ? '0rpx' : '32rpx'}" @click="changePlatformSelect(index)">
+				<text class="view-item"
+					:style="{'--bgColor': platformIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': platformIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
+			</view>
+		</scroll-view>
+		<scroll-view scroll-x="true" class="scroll-x-list" id="first">
+			<view v-for="(item,index) in languageList" class="view-parent"
+				:style="{'--right': index==languageList.length-1 ? '0rpx' : '32rpx'}" @click="changeLanguageSelect(index)">
+				<text class="view-item"
+					:style="{'--bgColor': languageIsSelected[index] ? '#dad4e6' : '#ffffff', '--txColor': languageIsSelected[index] ? '#b4a1ce' : '#000000'}">{{item}}</text>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="scroll-y">
+		<scroll-view v-if="isInfo == -1" scroll-y="true" class="display">
+			<view v-for="(item,index) in displayList" class="display-item">
+				<view class="display-item-name" @click="joinPlayThis(index)">
+					<text> {{ item.name }} </text>
+				</view>
+				<image src="../../static/more.png" class="display-item-more" @click="moreInfo(index)" />
+				<view class="display-item-info">
+					<text class="display-item-album"> {{ item.album }} </text>
+					<text class="display-item-type"> {{ item.music_type }}</text>
+					<text class="display-item-time">{{ item.publish_time.slice(0, 10) }}</text>
+				</view>
+			</view>
+		</scroll-view>
+	</view>
+	<view class="popup-box" @click="closePopup()" v-if="isInfo != -1"></view>
 	<view v-if="isInfo != -1" class="more-info" style="width: 730rpx;">
 		<view class="info-main">
-			<image :src="displayList[isInfo].cover" class="info-main-cover" />
+			<image :src="detail.cover_url" class="info-main-cover" />
 			<text class="info-main-name">{{ displayList[isInfo].name }}</text>
-			<text class="info-main-platform">{{ displayList[isInfo].platform }}</text>
+			<text class="info-main-platform">{{ getPlatform(isInfo) }}</text>
 		</view>
 		<image src="../../static/close.png" class="info-close" @click="closeInfo()" />
 		<view class="info-content">
-			<text> 作词：{{ displayList[isInfo].lyricist }}\n</text>
-			<text> 作曲：{{ displayList[isInfo].composer }}\n</text>
-			<text> 编曲：{{ displayList[isInfo].arranger }}\n</text>
-			<text> 类型：{{ displayList[isInfo].musictype }}\n</text>
-			<text> 语种：{{ displayList[isInfo].language }}\n</text>
-			<text> 专辑：{{ displayList[isInfo].album }}\n</text>
-			<text> 发行时间： {{ displayList[isInfo].publishtime }}\n</text>
-			<text> 有无PV/MV：{{ displayList[isInfo].PV }}\n</text>
-			<text v-if="displayList[isInfo].note != ''"> {{ displayList[isInfo].note }}</text>
+			<text> 作词：{{ detail.staff[1].name }}\n</text>
+			<text> 作曲：{{ detail.staff[0].name }}\n</text>
+			<text> 编曲：{{ detail.staff[2].name }}\n</text>
+			<text> 类型：{{ detail.music_type }}\n</text>
+			<text> 语种：{{ detail.language }}\n</text>
+			<text> 专辑：{{ detail.album }}\n</text>
+			<text> 发行时间： {{ detail.publish_time.slice(0, 10) }}\n</text>
+			<text> 有无PV/MV：{{ detail.pv_mv == null ? '无' : '有' }}\n</text>
+			<text v-if="detail.note != ''"> {{ detail.note }}</text>
 		</view>
 		<image src="../../static/add-music.png" class="info-next-img" @click="addNext(isInfo)" />
 		<text class="info-next" @click="addNext(isInfo)">下一首播放</text>
@@ -65,32 +69,32 @@
 		<image src="../../static/list-add.png" class="info-end-img" @click="addEnd(isInfo)" />
 	</view>
 	<view class="playmenu">
-		<image :src="playList[curIndex].cover" class="play-cover" />
+		<image :src="curPlay.cover_url" class="play-cover" />
 		<image v-if="onPlay" src="../../static/pause.png" @click="pauseMusic()" class="play-cover" />
 		<image v-if="!onPlay" src="../../static/play.png" @click="goOnMusic()" class="play-cover" />
-		<text class="play-name">当前播放：{{ playList[curIndex].name }}</text>
+		<text class="play-name">当前播放：{{ curPlay.name }}</text>
 		<image :src="orderList[orderIndex]" class="play-order" @click="changeOrder()" />
 		<image src="../../static/list.png" class="play-list" @click="list()" />
+		<view v-if="isList" class="list">
+			<text class="list-curplay">当前播放({{playList.length}})</text>
+			<text class="list-deleteall" @click="deleteAll()">清空列表</text>
+			<scroll-view scroll-y="true" class="list-table">
+				<view v-for="(item,index) in playList" class="list-item">
+					<text class="list-name" :style="{'--color': curIndex==index ? '#b4a1ce' : '#000000'}" @click="playThis(index)"
+						>{{ item.name }}</text>
+					<text class="list-album" :style="{'--color': curIndex==index ? '#b4a1ce' : '#000000'}" @click="playThis(index)"
+						>-{{ item.album }}</text>
+					<image src="../../static/delete.png" class="list-delete" @click="deleteThis(index)"/>
+				</view>
+			</scroll-view>
+		</view>
 	</view>
 	<view class="popup-box" @click="closePopup()" v-if="isList"></view>
-	<view v-if="isList" class="list">
-		<text class="list-curplay">当前播放({{playList.length}})</text>
-		<text class="list-deleteall" @click="deleteAll()">清空列表</text>
-		<scroll-view scroll-y="true" class="list-table">
-			<view v-for="(item,index) in playList" class="list-item">
-				<text class="list-name" :style="{'--color': curIndex==index ? '#b4a1ce' : '#000000'}" @click="playThis(index)"
-					>{{ item.name }}</text>
-				<text class="list-album" :style="{'--color': curIndex==index ? '#b4a1ce' : '#000000'}" @click="playThis(index)"
-					>-{{ item.album }}</text>
-				<image src="../../static/delete.png" class="list-delete" @click="deleteThis(index)"/>
-			</view>
-		</scroll-view>
-	</view> -->
 </template>
 
 <script>
 	import {
-		musictable
+		musictable, music_details
 	} from './musiclib.js'
 	export default {
 		data() {
@@ -171,7 +175,9 @@
 					'为他人创作'
 				],
 				onPlay: false,
-				innerAudioContext: uni.createInnerAudioContext()
+				innerAudioContext: uni.createInnerAudioContext(),
+				detail: music_details.data,
+				curPlay: music_details.data
 			}
 		},
 		methods: {
@@ -218,6 +224,7 @@
 					e = d;
 				}
 				this.displayList = e;
+				console.log(this.detail);
 			},
 			changeAlbumSelect(index) {
 				var a = [];
@@ -260,7 +267,23 @@
 					.platformIsSelected.indexOf(true), this.languageIsSelected.indexOf(true));
 			},
 			moreInfo(index) {
-				this.isInfo = index
+				this.isInfo = index;
+				uni.request({
+					url: 'http://r-wiki-api.sg.21hz.top/music/detail',
+					data: {
+						'music_id': this.displayList[index].id
+					},
+					method: 'GET',
+					success: res => {
+						console.log("请求成功", res.data);
+						this.detail = res.data.data;
+						console.log(this.detail);
+						this.$nextTick();
+					},
+					fail: err => {
+						console.log("请求失败", err);
+					}
+				})
 			},
 			joinPlayThis(index) {
 				var a = [];
@@ -296,31 +319,26 @@
 				});
 			},
 			playMusic() {
-				if (this.playList[this.curIndex].platform == '跨平台' || this.playList[this.curIndex]
-					.platform == '网易') {
-					this.innerAudioContext.autoplay = false;
-					this.innerAudioContext.src = "http://music.163.com/song/media/outer/url?id=" + this.playList[this
-						.curIndex].url + ".mp3";
-					this.innerAudioContext.pause();
-					this.innerAudioContext.play();
-					this.onPlay = true;
-				} else {
-					uni.request({
-						url: "https://m.kugou.com/app/i/getSongInfo.php?cmd=playInfo&hash=" + this
-							.playList[this.curIndex].url,
-						method: "GET",
-						success: res => {
-							console.log("请求成功", res.data);
-							this.innerAudioContext.autoplay = false
-							this.innerAudioContext.src = res.data.url
-							this.innerAudioContext.play();
-							this.onPlay = true;
-						},
-						fail: err => {
-							console.log("请求失败", err);
-						}
-					})
-				}
+				uni.request({
+					url: "http://r-wiki-api.sg.21hz.top/music/detail",
+					data: {
+						'music_id': this.playList[this.curIndex].id
+					},
+					method: 'GET',
+					success: res => {
+						console.log("请求成功", res.data);
+						this.curPlay = res.data.data;
+						this.$nextTick();
+					},
+					fail: err => {
+						console.log("请求失败", err);
+					}
+				})
+				this.innerAudioContext.autoplay = false;
+				this.innerAudioContext.src = curPlay.play_url;
+				this.innerAudioContext.pause();
+				this.innerAudioContext.play();
+				this.onPlay = true;
 			},
 			pauseMusic() {
 				this.innerAudioContext.pause();
@@ -410,12 +428,29 @@
 					duration: 2000, // 2秒
 				});
 			},
-
+			getPlatform(index) {
+				var netease = this.displayList[index].platform['netease'];
+				var qq_music = this.displayList[index].platform['qq_music'];
+				if (netease == null && qq_music == null) {
+					return '跨平台';
+				}
+				else if (netease == null && qq_music != null) {
+					return '腾讯系';
+				}
+				else {
+					return '网易';
+				}
+			}
 		}
 	}
 </script>
 
 <style>
+	.scroll-x {
+		white-space: nowrap;
+		position: sticky;
+	}
+	
 	.scroll-x-list {
 		height: 60rpx;
 		white-space: nowrap;
@@ -424,6 +459,12 @@
 
 	#first {
 		margin-top: 20rpx;
+	}
+
+	.scroll-y {
+		position: sticky;
+		white-space: nowrap;
+		height: 100%;
 	}
 
 	.view-parent {
@@ -446,8 +487,10 @@
 
 	.display {
 		white-space: nowrap;
+		position: fixed;
 		margin-left: 20rpx;
-		height: 974rpx;
+		bottom: var(--window-bottom);
+		top: 400rpx;
 	}
 
 	.display-item {
@@ -485,10 +528,10 @@
 	.more-info {
 		position: relative;
 		background-color: #ffffff;
-		top: 60rpx;
 		height: 700rpx;
 		width: 100%;
 		left: 10rpx;
+		bottom: var(--window-bottom);
 		z-index: 999;
 		border-radius: 5%;
 	}
@@ -526,7 +569,7 @@
 	.info-content {
 		position: absolute;
 		left: 20rpx;
-		top: 190rpx;
+		top: 200rpx;
 	}
 
 	.playmenu {
@@ -534,7 +577,7 @@
 		width: 100%;
 		height: 100rpx;
 		background-color: #b4a1ce;
-		bottom: 80rpx;
+		bottom: var(--window-bottom);
 		z-index: 9999;
 	}
 
@@ -574,18 +617,18 @@
 	.popup-box {
 		position: absolute;
 		z-index: 99;
-		top: 0;
+		bottom: var(--window-bottom);
 		background-color: rgba(0, 0, 0, 0.5);
 		width: 100%;
 		height: 100%;
 	}
 
 	.list {
-		position: sticky;
+		position: relative;
 		width: 96%;
 		height: 600rpx;
 		background-color: #dad4e9;
-		bottom: 100rpx;
+		top: -600rpx;
 		left: 2%;
 		border-radius: 5%;
 		z-index: 999;
