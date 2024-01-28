@@ -1,0 +1,77 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/wiki/wiki",
+			"style": {
+				"navigationBarTitleText": "百科"
+			}
+		},
+		{
+			"path": "pages/music/music",
+			"style": {
+				"navigationBarTitleText": "音乐"
+			}
+		},
+		{
+			"path": "pages/pic/pic",
+			"style": {
+				"navigationBarTitleText": "图库"
+			}
+		},
+		{
+			"path": "pages/video/video",
+			"style": {
+				"navigationBarTitleText": "视频"
+			}
+		}
+	],
+	"globalStyle": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#b4a1ce",
+		"navigationBarTitleText": "Rachel Wiki",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"color": "#ffffff",
+		"selectedColor": "#8583bf",
+		"backgroundColor": "#b4a1ce",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/s_home.png"
+			},
+			{
+				"pagePath": "pages/wiki/wiki",
+				"text": "百科",
+				"iconPath": "static/wiki.png",
+				"selectedIconPath": "static/s_wiki.png"
+			},
+			{
+				"pagePath": "pages/music/music",
+				"text": "音乐",
+				"iconPath": "static/music.png",
+				"selectedIconPath": "static/s_music.png"
+			},
+			{
+				"pagePath": "pages/video/video",
+				"text": "视频",
+				"iconPath": "static/video.png",
+				"selectedIconPath": "static/s_video.png"
+			},
+			{
+				"pagePath": "pages/pic/pic",
+				"text": "图库",
+				"iconPath": "static/pic.png",
+				"selectedIconPath": "static/s_pic.png"
+			}
+		]
+	},
+	"uniIdRouter": {}
+}
